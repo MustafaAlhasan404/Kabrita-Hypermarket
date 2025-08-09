@@ -141,7 +141,8 @@ export const content = {
       address: 'Damascus Countryside - Damascus International Airport Road - Al-Ghazlaniya',
       whatsapp: '+963935714545',
       email: 'kabritahypermarket@gmail.com',
-      distributor: 'kabritahypermarket@gmail.com'
+      distributor: 'kabritahypermarket@gmail.com',
+      b2b: 'b2b@kabritahypermarket.com'
     },
     sectionLabels: {
       aboutKabrita: 'About Kabrita',
@@ -303,7 +304,8 @@ export const content = {
       address: 'ريف دمشق - طريق مطار دمشق الدولي - الغزلانية',
       whatsapp: '+963935714545',
       email: 'kabritahypermarket@gmail.com',
-      distributor: 'kabritahypermarket@gmail.com'
+      distributor: 'kabritahypermarket@gmail.com',
+      b2b: 'b2b@kabritahypermarket.com'
     },
     sectionLabels: {
       aboutKabrita: 'عن كابريتا',

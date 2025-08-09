@@ -403,7 +403,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-stagger">
             {/* Vision */}
             <Card className="border border-emerald-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm hover:shadow-2xl transition-all duration-300 p-6 group hover-3d relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 dark:from-emerald-950/30 to-transparent dark:to-emerald-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <CardHeader className="p-0 mb-4 relative z-10">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-400/20 dark:to-emerald-500/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 glow-effect">
                   <Target className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -418,16 +418,17 @@ export default function Home() {
             </Card>
 
             {/* Mission */}
-            <Card className="border border-emerald-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all duration-300 p-6 group hover-lift">
-              <CardHeader className="p-0 mb-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-400/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <Card className="border border-emerald-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm hover:shadow-2xl transition-all duration-300 p-6 group hover-3d relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 dark:from-emerald-950/30 to-transparent dark:to-emerald-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <CardHeader className="p-0 mb-4 relative z-10">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-400/20 dark:to-emerald-500/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 glow-effect">
                   <Heart className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <CardTitle className="text-xl font-medium tracking-wide text-emerald-900 dark:text-emerald-300">
                   {t.mission.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-0">
+              <CardContent className="p-0 relative z-10">
                 <ul className="space-y-3">
                   {t.mission.points.map((point, index) => (
                     <li key={index} className="text-emerald-700 dark:text-gray-300 leading-relaxed font-light flex items-start">
@@ -440,16 +441,17 @@ export default function Home() {
             </Card>
 
             {/* Values */}
-            <Card className="border border-emerald-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-all duration-300 p-6 group hover-lift">
-              <CardHeader className="p-0 mb-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-400/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <Card className="border border-emerald-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm hover:shadow-2xl transition-all duration-300 p-6 group hover-3d relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 dark:from-emerald-950/30 to-transparent dark:to-emerald-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <CardHeader className="p-0 mb-4 relative z-10">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-400/20 dark:to-emerald-500/20 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 glow-effect">
                   <Sparkles className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <CardTitle className="text-xl font-medium tracking-wide text-emerald-900 dark:text-emerald-300">
                   {t.values.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-0">
+              <CardContent className="p-0 relative z-10">
                 <div className="space-y-4">
                   {t.values.items.map((value, index) => (
                     <div key={index}>
@@ -871,15 +873,15 @@ export default function Home() {
                         <Users className="h-5 w-5 md:h-6 md:w-6 text-emerald-100 dark:text-emerald-300" />
                       </div>
                       <h4 className="text-base md:text-lg font-medium mb-1 md:mb-2 text-white dark:text-gray-200">
-                        {locale === 'ar' ? 'للموزعين والشراكات' : 'For Distributors & Partnerships'}
+                        {locale === 'ar' ? 'للشراكات والموردين الكرام' : 'For Partnerships & Suppliers'}
                       </h4>
                       <a 
-                        href={`mailto:${t.contact.distributor}?subject=Partnership Inquiry from Official Website&body=${encodeURIComponent('Hey i got your number from your official website')}`}
+                        href={`mailto:${t.contact.b2b}?subject=B2B Inquiry from Official Website&body=${encodeURIComponent('Hey i got your number from your official website')}`}
                         className="text-xs md:text-sm text-emerald-100 hover:text-emerald-200 dark:text-emerald-300 dark:hover:text-emerald-200 font-medium transition-colors break-all"
                       >
-                        {t.contact.distributor}
+                        {t.contact.b2b}
                       </a>
-                      <p className="text-xs text-emerald-100/60 dark:text-gray-400 mt-1 font-light">
+                      <p className="text-xs text-emerald-100/60 dark:text-gray-400 mt-2 font-light">
                         {locale === 'ar' ? 'للشراكات التجارية والتوزيع' : 'For business partnerships & distribution'}
                       </p>
                     </div>
