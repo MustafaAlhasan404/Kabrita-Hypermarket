@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { content, type Locale, getDirection } from '@/lib/content';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useParallax, useMouseParallax } from '@/hooks/useParallax';
@@ -12,7 +13,6 @@ import {
   MapPin, 
   Globe, 
   Menu, 
-  X,
   MessageCircle,
   Truck,
   Shield,
@@ -48,37 +48,37 @@ export default function Home() {
   // Hero background images - representing Al-Hamidiyah Souq and modern Syrian markets
   const heroImages = [
     {
-      url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80", 
+      url: "/images/hero-modern-hypermarket.webp", 
       alt: "Modern Syrian hypermarket interior",
-      title: "Modern Excellence"
+      title: t.heroImageTitles.modernExcellence
     },
     {
-      url: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "/images/hero-fresh-produce.webp",
       alt: "Fresh produce in Syrian market",
-      title: "Quality Products"
+      title: t.heroImageTitles.qualityProducts
     },
     {
-      url: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "/images/hero-damascus-heritage.webp",
       alt: "Damascus old city architecture and traditional markets",
-      title: "Damascus Heritage"
+      title: t.heroImageTitles.damascusHeritage
     },
     {
-      url: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      url: "/images/hero-family-values.webp",
       alt: "Middle Eastern family shopping together in modern supermarket",
-      title: "Family Values"
+      title: t.sectionLabels.familyValues
     },
   ];
 
   // Product showcase images - professional presentation matching the content
   const productImages = [
     {
-      url: "/sugar-image.jpg",
+      url: "/images/sugar-image.webp",
       alt: "Premium refined white sugar - minimal aesthetic",
       title: "Premium Quality Sugar",
       product: t.products.items[0]
     },
     {
-      url: "https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80", 
+      url: "/images/product-basmati-rice.webp", 
       alt: "Premium Indian Basmati rice grains showcasing quality",
       title: "Finest Basmati Rice",
       product: t.products.items[1]
@@ -104,6 +104,11 @@ export default function Home() {
   const toggleLanguage = () => {
     setLocale(locale === 'en' ? 'ar' : 'en');
   };
+
+  // Update HTML lang attribute when locale changes
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -184,46 +189,97 @@ export default function Home() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? <X /> : <Menu />}
-              </Button>
+            <div className="md:hidden flex items-center gap-2">
+              <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-white hover:bg-white/20"
+                  >
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-emerald-50 dark:bg-gray-900 border-emerald-200 dark:border-gray-700">
+                  <SheetHeader>
+                    <SheetTitle className="text-2xl font-light text-emerald-700 dark:text-emerald-300">
+                      {locale === 'ar' ? 'القائمة' : 'Menu'}
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="mt-8 flex flex-col space-y-4">
+                    <button 
+                      onClick={() => {
+                        scrollToSection('home');
+                        setIsMenuOpen(false);
+                      }} 
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-left"
+                    >
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      {t.nav.home}
+                    </button>
+                    <button 
+                      onClick={() => {
+                        scrollToSection('about');
+                        setIsMenuOpen(false);
+                      }} 
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-left"
+                    >
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      {t.nav.about}
+                    </button>
+                    <button 
+                      onClick={() => {
+                        scrollToSection('products');
+                        setIsMenuOpen(false);
+                      }} 
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-left"
+                    >
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      {t.nav.products}
+                    </button>
+                    <button 
+                      onClick={() => {
+                        scrollToSection('services');
+                        setIsMenuOpen(false);
+                      }} 
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-left"
+                    >
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      {t.nav.services}
+                    </button>
+                    <button 
+                      onClick={() => {
+                        scrollToSection('contact');
+                        setIsMenuOpen(false);
+                      }} 
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-gray-800 rounded-lg transition-colors text-left"
+                    >
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                      {t.nav.contact}
+                    </button>
+                    <Separator className="my-4 bg-emerald-200 dark:bg-gray-700" />
+                    <div className="flex flex-col gap-3 px-4">
+                      <Button 
+                        onClick={() => {
+                          toggleLanguage();
+                          setIsMenuOpen(false);
+                        }} 
+                        variant="outline" 
+                        className="w-full justify-start border-emerald-300 dark:border-gray-600 hover:bg-emerald-100 dark:hover:bg-gray-800"
+                      >
+                        <Globe className="h-4 w-4 mr-2" />
+                        {t.nav.language}
+                      </Button>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-600 dark:text-gray-400">Theme:</span>
+                        <ThemeToggle />
+                      </div>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden animate-fadeIn">
-              <div className="px-2 pt-2 pb-8 space-y-6 bg-emerald-500 dark:bg-gray-900 border-t border-emerald-600/30 dark:border-gray-700">
-                <button onClick={() => scrollToSection('home')} className="block px-3 py-2 text-white/80 hover:text-white dark:text-gray-300 dark:hover:text-emerald-300 text-sm font-medium transition-colors">
-                  {t.nav.home}
-                </button>
-                <button onClick={() => scrollToSection('about')} className="block px-3 py-2 text-white/80 hover:text-white dark:text-gray-300 dark:hover:text-emerald-300 text-sm font-medium transition-colors">
-                  {t.nav.about}
-                </button>
-                <button onClick={() => scrollToSection('products')} className="block px-3 py-2 text-white/80 hover:text-white dark:text-gray-300 dark:hover:text-emerald-300 text-sm font-medium transition-colors">
-                  {t.nav.products}
-                </button>
-                <button onClick={() => scrollToSection('services')} className="block px-3 py-2 text-white/80 hover:text-white dark:text-gray-300 dark:hover:text-emerald-300 text-sm font-medium transition-colors">
-                  {t.nav.services}
-                </button>
-                <button onClick={() => scrollToSection('contact')} className="block px-3 py-2 text-white/80 hover:text-white dark:text-gray-300 dark:hover:text-emerald-300 text-sm font-medium transition-colors">
-                  {t.nav.contact}
-                </button>
-                <div className="flex gap-4 mt-6">
-                  <Button onClick={toggleLanguage} variant="ghost" size="sm" className="text-xs text-white dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800">
-                    <Globe className="h-4 w-4 mr-2" />
-                    {t.nav.language}
-                  </Button>
-                  <ThemeToggle />
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </nav>
 
@@ -252,14 +308,14 @@ export default function Home() {
         <button
           onClick={prevImage}
           className="absolute left-8 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-all backdrop-blur-sm"
-          aria-label="Previous image"
+                          aria-label={t.ariaLabels.previousImage}
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           onClick={nextImage}
           className="absolute right-8 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-all backdrop-blur-sm"
-          aria-label="Next image"
+                          aria-label={t.ariaLabels.nextImage}
         >
           <ChevronRight className="h-5 w-5" />
         </button>
@@ -332,7 +388,7 @@ export default function Home() {
           <div className="text-center mb-16 animate-fadeInUp">
             <div className="inline-block mb-4 px-4 py-2 bg-emerald-200/50 dark:bg-gray-800 rounded-full border border-emerald-300/50 dark:border-gray-700">
               <span className="text-emerald-700 dark:text-emerald-400 text-sm font-medium tracking-wide uppercase">
-                About Kabrita
+                {t.sectionLabels.aboutKabrita}
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-light text-emerald-800 dark:text-emerald-300 mb-6 tracking-tight">
@@ -417,7 +473,7 @@ export default function Home() {
           <div className="text-center mb-16 animate-fadeInUp">
             <div className="inline-block mb-4 px-4 py-2 bg-emerald-100/70 dark:bg-gray-800 backdrop-blur-sm rounded-full border border-emerald-300/50 dark:border-gray-700">
               <span className="text-emerald-800 dark:text-emerald-400 text-sm font-medium tracking-wide uppercase">
-                Our Products
+                {t.sectionLabels.ourProducts}
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-light text-emerald-900 dark:text-emerald-300 mb-6 tracking-tight">
@@ -450,14 +506,14 @@ export default function Home() {
             <button
               onClick={prevProduct}
               className="absolute left-6 top-1/2 transform -translate-y-1/2 z-30 bg-emerald-500/20 hover:bg-emerald-500/40 text-white p-3 rounded-full transition-all backdrop-blur-sm hover:scale-110"
-              aria-label="Previous product"
+                              aria-label={t.ariaLabels.previousProduct}
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={nextProduct}
               className="absolute right-6 top-1/2 transform -translate-y-1/2 z-30 bg-emerald-500/20 hover:bg-emerald-500/40 text-white p-3 rounded-full transition-all backdrop-blur-sm hover:scale-110"
-              aria-label="Next product"
+                              aria-label={t.ariaLabels.nextProduct}
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -520,7 +576,7 @@ export default function Home() {
           <div className="text-center mb-16 animate-fadeInUp">
             <div className="inline-block mb-4 px-4 py-2 bg-emerald-50/70 dark:bg-gray-900 rounded-full border border-emerald-200/50 dark:border-gray-700">
               <span className="text-emerald-700 dark:text-emerald-400 text-sm font-medium tracking-wide uppercase">
-                Our Services
+                {t.sectionLabels.ourServices}
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-light text-emerald-800 dark:text-emerald-300 mb-6 tracking-tight">
@@ -589,7 +645,7 @@ export default function Home() {
           <div className="text-center mb-16 animate-fadeInUp">
             <div className="inline-block mb-4 px-4 py-2 bg-emerald-200/70 dark:bg-gray-800 backdrop-blur-sm rounded-full border border-emerald-400/50 dark:border-gray-700">
               <span className="text-emerald-800 dark:text-emerald-400 text-sm font-medium tracking-wide uppercase">
-                Why Choose Us
+                {t.sectionLabels.whyChooseUs}
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-light text-emerald-900 dark:text-emerald-300 mb-6 tracking-tight">
@@ -683,6 +739,9 @@ export default function Home() {
               <h3 className="text-3xl md:text-4xl font-light mb-4 tracking-tight">
                 {t.future.title}
               </h3>
+              <p className="text-xl text-emerald-100 dark:text-gray-300 font-light italic mb-6">
+                {t.future.subtitle}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -716,38 +775,35 @@ export default function Home() {
           <div className="text-center mb-16 animate-fadeInUp">
             <div className="inline-block mb-4 px-4 py-2 bg-emerald-200/50 dark:bg-gray-800 rounded-full border border-emerald-300/50 dark:border-gray-700">
               <span className="text-emerald-700 dark:text-emerald-400 text-sm font-medium tracking-wide uppercase">
-                Get In Touch
+                {t.sectionLabels.getInTouch}
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-light text-emerald-950 dark:text-gray-200 mb-6 tracking-tight">
               {t.contact.title}
             </h2>
             <p className="text-xl text-emerald-700 dark:text-gray-400 max-w-2xl mx-auto font-light">
-              {locale === 'ar' 
-                ? 'نحن هنا لخدمتكم. تواصلوا معنا عبر أي من القنوات التالية'
-                : 'We\'re here to serve you. Reach out to us through any of the following channels'
-              }
+              {t.contact.description}
             </p>
           </div>
 
           {/* Premium Contact Card with Glassmorphism */}
-          <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl bg-emerald-800/90 dark:bg-gray-900/90 backdrop-blur-sm text-emerald-50 dark:text-gray-200 animate-scaleIn border border-emerald-700/30 dark:border-gray-700/30 hover-3d">
+          <div className="relative min-h-[600px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl bg-emerald-800/90 dark:bg-gray-900/90 backdrop-blur-sm text-emerald-50 dark:text-gray-200 animate-scaleIn border border-emerald-700/30 dark:border-gray-700/30 hover-3d">
             {/* Contact Content */}
-            <div className="absolute inset-0 z-10 flex items-center">
-              <div className="max-w-6xl mx-auto px-12 w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative z-10 p-4 md:p-8 lg:p-12 h-full flex items-center">
+              <div className="max-w-6xl mx-auto w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                   
                   {/* Left Side - Primary Contact */}
                   <div className="text-center lg:text-left">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-50/20 to-emerald-100/20 dark:from-emerald-400/20 dark:to-emerald-500/20 rounded-full mb-8 glow-effect float-animation">
-                      <MessageCircle className="h-10 w-10 text-emerald-100 dark:text-emerald-300" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-emerald-50/20 to-emerald-100/20 dark:from-emerald-400/20 dark:to-emerald-500/20 rounded-full mb-6 md:mb-8 glow-effect float-animation">
+                      <MessageCircle className="h-8 w-8 md:h-10 md:w-10 text-emerald-100 dark:text-emerald-300" />
                     </div>
                     
-                    <h3 className="text-3xl md:text-4xl font-light mb-6 leading-tight tracking-tight text-white dark:text-emerald-300">
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 md:mb-6 leading-tight tracking-tight text-white dark:text-emerald-300">
                       {locale === 'ar' ? 'تواصل معنا فوراً' : 'Connect With Us Instantly'}
                     </h3>
                     
-                    <p className="text-xl text-emerald-100 dark:text-gray-300 mb-8 font-light leading-relaxed">
+                    <p className="text-base md:text-lg lg:text-xl text-emerald-100 dark:text-gray-300 mb-6 md:mb-8 font-light leading-relaxed">
                       {locale === 'ar' 
                         ? 'نحن متواجدون دائماً لخدمتكم وتلبية احتياجاتكم'
                         : 'We\'re always here to serve you and meet your business needs'
@@ -755,71 +811,71 @@ export default function Home() {
                     </p>
 
                     {/* Primary WhatsApp CTA */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 md:space-y-3">
                       <Button 
                         asChild
                         size="lg"
-                        className="text-base px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 dark:hover:from-emerald-500 dark:hover:to-emerald-600 text-white dark:text-black rounded-full font-medium transition-all transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group"
+                        className="text-sm md:text-base px-6 md:px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 dark:from-emerald-400 dark:to-emerald-500 dark:hover:from-emerald-500 dark:hover:to-emerald-600 text-white dark:text-black rounded-full font-medium transition-all transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group w-full md:w-auto"
                       >
                         <a 
                           href={`https://wa.me/${t.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hey i got your number from your official website')}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-3"
+                          className="inline-flex items-center gap-2 md:gap-3 justify-center w-full"
                         >
-                          <MessageCircle className="h-5 w-5" />
-                          {t.contact.whatsapp}
+                          <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
+                          <span dir="ltr">{t.contact.whatsapp}</span>
                         </a>
                       </Button>
-                      <p className="text-sm text-emerald-100/60 dark:text-gray-400 font-light">
+                      <p className="text-xs md:text-sm text-emerald-100/60 dark:text-gray-400 font-light">
                         {locale === 'ar' ? 'انقر للمراسلة الفورية' : 'Click for instant messaging'}
                       </p>
                     </div>
                   </div>
 
                   {/* Right Side - Contact Details Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-8 lg:mt-0">
                     
                     {/* Address */}
-                    <div className="text-center">
-                      <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-50/20 dark:bg-emerald-400/20 rounded-full mb-3">
-                        <MapPin className="h-6 w-6 text-emerald-100 dark:text-emerald-300" />
+                    <div className="text-center p-4 md:p-0">
+                      <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-emerald-50/20 dark:bg-emerald-400/20 rounded-full mb-2 md:mb-3">
+                        <MapPin className="h-5 w-5 md:h-6 md:w-6 text-emerald-100 dark:text-emerald-300" />
                       </div>
-                      <h4 className="text-lg font-medium mb-2 text-white dark:text-gray-200">
+                      <h4 className="text-base md:text-lg font-medium mb-1 md:mb-2 text-white dark:text-gray-200">
                         {locale === 'ar' ? 'العنوان' : 'Address'}
                       </h4>
-                      <p className="text-sm text-emerald-100/70 dark:text-gray-400 leading-relaxed font-light">
+                      <p className="text-xs md:text-sm text-emerald-100/70 dark:text-gray-400 leading-relaxed font-light">
                         {t.contact.address}
                       </p>
                     </div>
 
                     {/* Email */}
-                    <div className="text-center">
-                      <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-50/20 dark:bg-emerald-400/20 rounded-full mb-3">
-                        <Mail className="h-6 w-6 text-emerald-100 dark:text-emerald-300" />
+                    <div className="text-center p-4 md:p-0">
+                      <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-emerald-50/20 dark:bg-emerald-400/20 rounded-full mb-2 md:mb-3">
+                        <Mail className="h-5 w-5 md:h-6 md:w-6 text-emerald-100 dark:text-emerald-300" />
                       </div>
-                      <h4 className="text-lg font-medium mb-2 text-white dark:text-gray-200">
+                      <h4 className="text-base md:text-lg font-medium mb-1 md:mb-2 text-white dark:text-gray-200">
                         {locale === 'ar' ? 'البريد الإلكتروني' : 'Email'}
                       </h4>
                       <a 
                         href={`mailto:${t.contact.email}?subject=Contact from Official Website&body=${encodeURIComponent('Hey i got your number from your official website')}`}
-                        className="text-sm text-emerald-100 hover:text-emerald-200 dark:text-emerald-300 dark:hover:text-emerald-200 font-medium transition-colors break-all"
+                        className="text-xs md:text-sm text-emerald-100 hover:text-emerald-200 dark:text-emerald-300 dark:hover:text-emerald-200 font-medium transition-colors break-all"
                       >
                         {t.contact.email}
                       </a>
                     </div>
 
                     {/* Distributor Contact */}
-                    <div className="text-center sm:col-span-2">
-                      <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-50/20 dark:bg-emerald-400/20 rounded-full mb-3">
-                        <Users className="h-6 w-6 text-emerald-100 dark:text-emerald-300" />
+                    <div className="text-center md:col-span-2 p-4 md:p-0 mt-4 md:mt-0">
+                      <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-emerald-50/20 dark:bg-emerald-400/20 rounded-full mb-2 md:mb-3">
+                        <Users className="h-5 w-5 md:h-6 md:w-6 text-emerald-100 dark:text-emerald-300" />
                       </div>
-                      <h4 className="text-lg font-medium mb-2 text-white dark:text-gray-200">
+                      <h4 className="text-base md:text-lg font-medium mb-1 md:mb-2 text-white dark:text-gray-200">
                         {locale === 'ar' ? 'للموزعين والشراكات' : 'For Distributors & Partnerships'}
                       </h4>
                       <a 
                         href={`mailto:${t.contact.distributor}?subject=Partnership Inquiry from Official Website&body=${encodeURIComponent('Hey i got your number from your official website')}`}
-                        className="text-sm text-emerald-100 hover:text-emerald-200 dark:text-emerald-300 dark:hover:text-emerald-200 font-medium transition-colors break-all"
+                        className="text-xs md:text-sm text-emerald-100 hover:text-emerald-200 dark:text-emerald-300 dark:hover:text-emerald-200 font-medium transition-colors break-all"
                       >
                         {t.contact.distributor}
                       </a>

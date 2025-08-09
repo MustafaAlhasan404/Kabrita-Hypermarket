@@ -222,6 +222,12 @@
   margin-left: 0;
 }
 
+/* Phone number direction fix for RTL */
+[dir="ltr"] {
+  direction: ltr !important;
+  unicode-bidi: bidi-override;
+}
+
 /* Enhanced smooth transitions for minimalist feel */
 * {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;

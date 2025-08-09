@@ -70,12 +70,13 @@ export const content = {
     },
     future: {
       title: 'Toward a Smarter Food Future',
+      subtitle: '"We don\'t just supply food… we create a sustainable food system"',
       points: [
-        'Launching an e-commerce platform for orders & inventory',
-        'Introducing new product lines (oils, legumes, flour, …)',
-        'Real-time shipment tracking system',
-        'Partnerships with food-waste reduction initiatives',
-        'Adopting AI for demand planning & stock distribution'
+        'Smart digital platform - to track your orders and inventory at the touch of a button',
+        'Expanding product range - to become your one-stop destination for sugar, rice, coffee, premium tea, flour products, legumes',
+        'Smart shipments - direct tracking system that shows you where your shipment is before you ask',
+        'Green partnerships - with food waste reduction initiatives to make a positive difference',
+        'Artificial intelligence - predicts your needs before you order them'
       ]
     },
     testimonial: {
@@ -136,10 +137,30 @@ export const content = {
     },
     contact: {
       title: 'Contact Us',
+      description: 'We\'re here to serve you. Reach out to us through any of the following channels',
       address: 'Damascus Countryside - Damascus International Airport Road - Al-Ghazlaniya',
       whatsapp: '+963935714545',
-      email: 'info@kabritahypermarket.com',
-      distributor: 'Kabritadistributor@gmail.com'
+      email: 'kabritahypermarket@gmail.com',
+      distributor: 'kabritahypermarket@gmail.com'
+    },
+    sectionLabels: {
+      aboutKabrita: 'About Kabrita',
+      ourProducts: 'Our Products',
+      familyValues: 'Family Values',
+      ourServices: 'Our Services',
+      getInTouch: 'Get In Touch',
+      whyChooseUs: 'Why Choose Us'
+    },
+    heroImageTitles: {
+      modernExcellence: 'Modern Excellence',
+      qualityProducts: 'Quality Products',
+      damascusHeritage: 'Damascus Heritage'
+    },
+    ariaLabels: {
+      previousImage: 'Previous image',
+      nextImage: 'Next image',
+      previousProduct: 'Previous product',
+      nextProduct: 'Next product'
     }
   },
   ar: {
@@ -154,7 +175,7 @@ export const content = {
     hero: {
       title: 'كابريتا هايبر ماركت',
       subtitle: 'شريكك الموثوق في التوريد الغذائي',
-      description: 'شركة سورية رائدة متخصصة في استيراد وتوزيع المواد الغذائية بالجملة. من دمشق إلى جميع المحافظات السورية، نوفر منتجات غذائية عالية الجودة بأسعار مدروسة.',
+      description: 'شركة سورية متخصصة في استيراد وتوزيع المواد الغذائية بالجملة B2B. من دمشق إلى جميع المحافظات السورية، نوفر منتجات غذائية عالية الجودة بأسعار مدروسة.',
       cta: 'تواصل معنا اليوم'
     },
     about: {
@@ -186,12 +207,12 @@ export const content = {
     advantages: {
       title: 'لماذا تختار كابريتا',
       items: [
-        'شبكة واسعة من الموردين المعتمدين والمصانع الموثوقة من برازيل وهندي وأمريكا اللاتينية',
+        'شبكة واسعة من الموردين المعتمدين من البرازيل، الهند، وكل دول العالم',
         'أسعار مدروسة تناسب السوق السوري',
         'الالتزام بمعايير الجودة والسلامة الغذائية',
         'دعم تقني وتجاري مستمر للعملاء',
         'خيارات دفع وتوصيل مرنة',
-        'رضا العملاء الموثوق والإحاطات'
+        'رضا العملاء والموثوقية'
       ]
     },
     partners: {
@@ -199,24 +220,25 @@ export const content = {
       globalTitle: 'الموردون الدوليون',
       localTitle: 'العملاء المحليون',
       global: [
-        'عقود مباشرة مع مطاحن ومصانع – هندي، برازيلي، أمريكا اللاتينية',
+        'عقود مباشرة دون وسطاء - لنضمن لكم أسعار مدروسة وجودة غير مسبوقة',
         '15 شريك دولي في التوريد واللوجستيات'
       ],
       local: [
-        'شركات طعام مركزة في دمشق، حلب، لتكا',
+        'شركات طعام مركزة في دمشق وحلب وباقي المحافظات',
         'مصانع تعبئة وتغليف الطعام',
         'فنادق خمس نجوم ومنتجعات',
         'تجار بالجملة في جميع المحافظات'
       ]
     },
     future: {
-      title: 'إلى مستقبل غذائي أكثر ذكاء',
+      title: 'تطلعاتنا نحو مستقبل غذائي أكثر ذكاءً',
+      subtitle: '"لا نكتفي بتوريد الغذاء… نصنع نظاماً غذائياً مستداماً"',
       points: [
-        'إطلاق منصة إلكترونية لطلبات ومخزن المواد الغذائية',
-        'إطلاق خطوط جديدة من المنتجات (زيت، بقوليات، دقيق، …)',
-        'نظام تتبع الشحن الحقيقي',
-        'شراكات مع مبادرات تقليل الطعام المتبقي',
-        'إستثمار الذكاء الصناعي لتخطيط الطلب وتوزيع المخزون'
+        'منصة رقمية ذكية - لتتبع طلباتكم ومخزونكم بلمسة زر',
+        'توسيع نطاق المنتجات - لنصبح وجهتكم الوحيدة للسكر، الأرز، القهوة، الشاي الفاخر، منتجات الطحين، البقوليات',
+        'شحنات ذكية - نظام تتبع مباشر يكشف لكم مكان شحنتكم قبل أن تسأل',
+        'شراكات خضراء - مع مبادرات الحد من الهدر الغذائي لصنع فرق إيجابي',
+        'ذكاء اصطناعي - يتنبأ باحتياجاتكم قبل أن تطلبوها'
       ]
     },
     testimonial: {
@@ -238,7 +260,7 @@ export const content = {
           name: 'أرز بسمتي هندي فاخر',
           features: [
             'مستورد من أفضل المزارع الهندية',
-            'حبوب طويلة، نكهة خفيفة، قليل النشا',
+            'حبوب طويلة، قليل النشا لا يلتصق ويبقى خفيفاً على المعدة',
             'تعبئة احترافية بمقاسات مختلفة'
           ]
         }
@@ -277,10 +299,30 @@ export const content = {
     },
     contact: {
       title: 'تواصل معنا',
+      description: 'نحن هنا لخدمتكم. تواصلوا معنا عبر أي من القنوات التالية',
       address: 'ريف دمشق - طريق مطار دمشق الدولي - الغزلانية',
       whatsapp: '+963935714545',
-      email: 'info@kabritahypermarket.com',
-      distributor: 'Kabritadistributor@gmail.com'
+      email: 'kabritahypermarket@gmail.com',
+      distributor: 'kabritahypermarket@gmail.com'
+    },
+    sectionLabels: {
+      aboutKabrita: 'عن كابريتا',
+      ourProducts: 'منتجاتنا',
+      familyValues: 'القيم العائلية',
+      ourServices: 'خدماتنا',
+      getInTouch: 'تواصل معنا',
+      whyChooseUs: 'لماذا تختارنا'
+    },
+    heroImageTitles: {
+      modernExcellence: 'التميز الحديث',
+      qualityProducts: 'منتجات عالية الجودة',
+      damascusHeritage: 'تراث دمشق'
+    },
+    ariaLabels: {
+      previousImage: 'الصورة السابقة',
+      nextImage: 'الصورة التالية',
+      previousProduct: 'المنتج السابق',
+      nextProduct: 'المنتج التالي'
     }
   }
 };
